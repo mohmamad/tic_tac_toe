@@ -26,6 +26,17 @@ public class main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jInternalFrame1 = new javax.swing.JInternalFrame();
+        main = new javax.swing.JPanel();
+        header1 = new javax.swing.JPanel();
+        title = new javax.swing.JLabel();
+        btns = new javax.swing.JPanel();
+        easy = new javax.swing.JPanel();
+        easyBtn = new javax.swing.JLabel();
+        medium = new javax.swing.JPanel();
+        mediumBtn = new javax.swing.JLabel();
+        hard = new javax.swing.JPanel();
+        hardBtn = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
         header = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -35,6 +46,121 @@ public class main extends javax.swing.JFrame {
         singlePM = new javax.swing.JPanel();
         singleBtn = new javax.swing.JLabel();
         multiPM = new javax.swing.JPanel();
+        multiBtn = new javax.swing.JLabel();
+
+        jInternalFrame1.setPreferredSize(new java.awt.Dimension(479, 459));
+        jInternalFrame1.setVisible(true);
+
+        main.setBackground(new java.awt.Color(51, 51, 0));
+        main.setLayout(new java.awt.BorderLayout());
+
+        title.setFont(new java.awt.Font("Showcard Gothic", 0, 36)); // NOI18N
+        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title.setText("TIC TAC TOE");
+
+        javax.swing.GroupLayout header1Layout = new javax.swing.GroupLayout(header1);
+        header1.setLayout(header1Layout);
+        header1Layout.setHorizontalGroup(
+            header1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+        );
+        header1Layout.setVerticalGroup(
+            header1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+        );
+
+        main.add(header1, java.awt.BorderLayout.PAGE_START);
+
+        btns.setBackground(new java.awt.Color(0, 0, 255));
+
+        easy.setBackground(new java.awt.Color(51, 255, 0));
+
+        easyBtn.setFont(new java.awt.Font("Ravie", 0, 14)); // NOI18N
+        easyBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        easyBtn.setText("Easy");
+
+        javax.swing.GroupLayout easyLayout = new javax.swing.GroupLayout(easy);
+        easy.setLayout(easyLayout);
+        easyLayout.setHorizontalGroup(
+            easyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(easyBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        easyLayout.setVerticalGroup(
+            easyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(easyBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+        );
+
+        medium.setBackground(new java.awt.Color(255, 153, 0));
+
+        mediumBtn.setFont(new java.awt.Font("Ravie", 0, 14)); // NOI18N
+        mediumBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mediumBtn.setText("Medium");
+
+        javax.swing.GroupLayout mediumLayout = new javax.swing.GroupLayout(medium);
+        medium.setLayout(mediumLayout);
+        mediumLayout.setHorizontalGroup(
+            mediumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(mediumBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+        );
+        mediumLayout.setVerticalGroup(
+            mediumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(mediumBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+        );
+
+        hard.setBackground(new java.awt.Color(255, 0, 0));
+
+        hardBtn.setBackground(new java.awt.Color(255, 0, 0));
+        hardBtn.setFont(new java.awt.Font("Ravie", 0, 14)); // NOI18N
+        hardBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        hardBtn.setText("Hard");
+
+        javax.swing.GroupLayout hardLayout = new javax.swing.GroupLayout(hard);
+        hard.setLayout(hardLayout);
+        hardLayout.setHorizontalGroup(
+            hardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(hardBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        hardLayout.setVerticalGroup(
+            hardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(hardBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout btnsLayout = new javax.swing.GroupLayout(btns);
+        btns.setLayout(btnsLayout);
+        btnsLayout.setHorizontalGroup(
+            btnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnsLayout.createSequentialGroup()
+                .addContainerGap(165, Short.MAX_VALUE)
+                .addGroup(btnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(easy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(medium, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(hard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(166, Short.MAX_VALUE))
+        );
+        btnsLayout.setVerticalGroup(
+            btnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnsLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(easy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(medium, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(hard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+
+        main.add(btns, java.awt.BorderLayout.CENTER);
+
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(main, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -51,7 +177,7 @@ public class main extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Tic Tac Toe");
         jLabel2.setToolTipText("");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, 480, 90));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -5, 480, 110));
 
         jPanel1.add(jPanel2, java.awt.BorderLayout.CENTER);
 
@@ -75,7 +201,8 @@ public class main extends javax.swing.JFrame {
         singlePM.setPreferredSize(new java.awt.Dimension(200, 70));
 
         singleBtn.setFont(new java.awt.Font("Ravie", 0, 18)); // NOI18N
-        singleBtn.setText("    Single Player");
+        singleBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        singleBtn.setText("single Player");
         singleBtn.setToolTipText("");
         singleBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         singleBtn.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
@@ -91,16 +218,26 @@ public class main extends javax.swing.JFrame {
             .addComponent(singleBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
         );
 
+        singleBtn.getAccessibleContext().setAccessibleName("Single Player");
+
+        multiBtn.setFont(new java.awt.Font("Ravie", 0, 18)); // NOI18N
+        multiBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        multiBtn.setText("multiPlayer");
+        multiBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         javax.swing.GroupLayout multiPMLayout = new javax.swing.GroupLayout(multiPM);
         multiPM.setLayout(multiPMLayout);
         multiPMLayout.setHorizontalGroup(
             multiPMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(multiBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         multiPMLayout.setVerticalGroup(
             multiPMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
+            .addComponent(multiBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
         );
+
+        multiBtn.getAccessibleContext().setAccessibleName("multiPlayer");
+        multiBtn.getAccessibleContext().setAccessibleDescription("");
 
         javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
         body.setLayout(bodyLayout);
@@ -167,13 +304,25 @@ public class main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel body;
+    private javax.swing.JPanel btns;
+    private javax.swing.JPanel easy;
+    private javax.swing.JLabel easyBtn;
+    private javax.swing.JPanel hard;
+    private javax.swing.JLabel hardBtn;
     private javax.swing.JPanel header;
+    private javax.swing.JPanel header1;
+    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel main;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel medium;
+    private javax.swing.JLabel mediumBtn;
+    private javax.swing.JLabel multiBtn;
     private javax.swing.JPanel multiPM;
     private javax.swing.JLabel singleBtn;
     private javax.swing.JPanel singlePM;
+    private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

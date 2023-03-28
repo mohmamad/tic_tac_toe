@@ -4,19 +4,60 @@
  */
 package com.mycompany.tic_tac_toe;
 
+import java.awt.AWTEvent;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.GridBagLayout;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.BoxLayout;
+import static javax.swing.GroupLayout.Alignment.CENTER;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.Popup;
+import javax.swing.PopupFactory;
+
 /**
  *
  * @author GoldenTech
  */
-public class multiplayerFrame extends javax.swing.JFrame {
+public class multiplayerFrame extends javax.swing.JFrame implements ActionListener{
 
     /**
      * Creates new form multiplayerFrame
      */
+     // popup
+    Popup p;
+   
+     PopupFactory pf = new PopupFactory();
+     
+        // create a panel
+       
+        JPanel p1 = new JPanel();
+         JPanel p2 = new JPanel();
+         JLabel thewinner = new JLabel("player 1(O) is the winner!");
+    private AWTEvent MouseClicked;
     public multiplayerFrame() {
         initComponents();
+        // create a frame
+       
+ 
+        // create a label
+        
+ 
+       // f.setSize(400, 400);
+ 
+       
+ 
+       
     }
-
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -368,7 +409,31 @@ public class multiplayerFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+  
+    boolean winner = false;
+    boolean drawb = false;
     public void checkWinner(int[][] matrix){
+        ///////////////
+         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+         GraphicsDevice defaultScreen = ge.getDefaultScreenDevice();
+    Rectangle rect = defaultScreen.getDefaultConfiguration().getBounds();
+    int X = ((int) rect.getMaxX() - p1.getWidth()) / 2;
+    int y = (int)((int) rect.getMaxX() - (p1.getHeight() * 1.9)) / 2;
+        p2.setSize(400, 100);
+        p1.setSize(400, 100);
+        Font fo = new Font("Chiller", 10, 59);
+        thewinner.setFont(fo);
+       // p2.setBackground(Color.white);
+        p1.setLayout(new GridBagLayout());
+        p2.add(thewinner);
+        
+        
+        p = pf.getPopup(this, p2, 0, 0);
+     
+        this.add(p1);
+       // f.show();
+        //////////////////////
+       
         int x = 0;
         int o = 0;
         for(int i = 0 ; i < 3 ; i++){
@@ -384,10 +449,18 @@ public class multiplayerFrame extends javax.swing.JFrame {
                 }
             }
             if(x == 3){
-                System.out.println("x winner");
+                winner = true;
+                thewinner.setText("player 2(X) is the winner!");
+                 p = pf.getPopup(this, p2, X, y);
+                 p.show();
+                
                 //x winner
             }else if(o == 3){
-                System.out.println("o winner1");
+                 winner = true;
+                 thewinner.setText("player 1(O) is the winner!");
+                 p = pf.getPopup(this, p2, X, y);
+                  p.show();
+                
                 //o winner
             }
         }
@@ -405,32 +478,74 @@ public class multiplayerFrame extends javax.swing.JFrame {
             }
             if(x == 3){
                 //x winner
-                System.out.println("x winner");
+                 winner = true;
+                thewinner.setText("player 2(X) is the winner!");
+                 p = pf.getPopup(this, p2, X, y);
+                 p.show();
+               
             }else if(o == 3){
-                System.out.println("o winner2");
+                 winner = true;
+                thewinner.setText("player 1(O) is the winner!");
+                 p = pf.getPopup(this, p2, X, y);
+                 p.show();
+               
                 //o winner
             }
         }
          if(matrix[0][0] == 1 && matrix[1][1] == 1 && matrix[2][2] == 1){
-             System.out.println("o winner3");
+              winner = true;
+             thewinner.setText("player 1(O) is the winner!");
+              p = pf.getPopup(this, p2, X, y);
+              p.show();
+            
              //o winner
          }else if(matrix[0][0] == 2 && matrix[1][1] == 2 && matrix[2][2] == 2){
-             System.out.println("x winner");
+              winner = true;
+             thewinner.setText("player 2(X) is the winner!");
+              p = pf.getPopup(this, p2, X, y);
+              p.show();
+            
              //x winner
          }
          if(matrix[0][2] == 1 && matrix[1][1] == 1 && matrix[2][0] == 1){
-             System.out.println("o winner");
+              winner = true;
+             thewinner.setText("player 1(O) is the winner!");
+              p = pf.getPopup(this, p2, X, y);
+              p.show();
+            
              //o winner
          }else if(matrix[0][2] == 2 && matrix[1][1] == 2 && matrix[2][0] == 2){
+              winner = true;
              //x winner
-             System.out.println("x winner");
+            thewinner.setText("player 2(X) is the winner!");
+             p = pf.getPopup(this, p2, X, y);
+             p.show();
+           
+         }
+         int draw = 0;
+         for(int i = 0 ; i < 3 ; i++){
+             for(int j = 0 ; j < 3 ; j++){
+                 if(matrix[i][j] == 0){
+                     break;
+                 }else{
+                     draw++;
+                 }
+             }
+         }
+         if(draw == 9 && !winner){
+             X =(int) ((int) rect.getMaxX() - (p1.getWidth() / 1.4)) / 2;
+             thewinner.setText("ITS A DRAW!...");
+             p = pf.getPopup(this, p2, X, y);
+             drawb = true;
+              p.show();
+            
          }
     }
     int[][] matrix = new int[3][3];
     int player = 1;
     private void backFromMultiLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backFromMultiLabel1MouseClicked
         main f = new main();
-        System.out.println("hi");
+      //  System.out.println("hi");
         this.setVisible(false);
         f.setVisible(true);
     }//GEN-LAST:event_backFromMultiLabel1MouseClicked
@@ -448,11 +563,19 @@ public class multiplayerFrame extends javax.swing.JFrame {
         label22.setText("");
         player = 1;
         playerTurn1.setText("Players 1(O) turn");
-        
+        for(int i = 0 ; i < 3 ; i++){
+            for(int j = 0 ; j < 3 ; j++){
+                matrix[i][j] = 0;
+            }
+        }
+        winner = false;
+        drawb = false;
+      p.hide();
+           
     }//GEN-LAST:event_restartMouseClicked
 
     private void label00MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label00MouseClicked
-       if(label00.getText() != "X" && label00.getText() != "O"){
+       if(label00.getText() != "X" && label00.getText() != "O" && !winner && !drawb){
         if(player == 1){
           matrix[0][0] = 1; 
           player = 2;
@@ -466,11 +589,14 @@ public class multiplayerFrame extends javax.swing.JFrame {
         }
       // label00.setEnabled(false);
       checkWinner(matrix);
-       } 
+       }
+       
+      
+       
     }//GEN-LAST:event_label00MouseClicked
 
     private void label01MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label01MouseClicked
-      if(label01.getText() != "X" && label01.getText() != "O"){
+      if(label01.getText() != "X" && label01.getText() != "O" && !winner && !drawb){
         if(player == 1){
           matrix[0][1] = 1; 
           player = 2;
@@ -487,7 +613,7 @@ public class multiplayerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_label01MouseClicked
 
     private void label02MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label02MouseClicked
-       if(label02.getText() != "X" && label02.getText() != "O"){  
+       if(label02.getText() != "X" && label02.getText() != "O" && !winner && !drawb){  
         if(player == 1){
           matrix[0][2] = 1; 
           player = 2;
@@ -504,7 +630,7 @@ public class multiplayerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_label02MouseClicked
 
     private void label10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label10MouseClicked
-        if(label10.getText() != "X" && label10.getText() != "O"){ 
+        if(label10.getText() != "X" && label10.getText() != "O" && !winner && !drawb){ 
         if(player == 1){
           matrix[1][0] = 1; 
           player = 2;
@@ -521,7 +647,7 @@ public class multiplayerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_label10MouseClicked
 
     private void label11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label11MouseClicked
-       if(label11.getText() != "X" && label11.getText() != "O"){  
+       if(label11.getText() != "X" && label11.getText() != "O" && !winner && !drawb){  
         if(player == 1){
           matrix[1][1] = 1; 
           player = 2;
@@ -538,7 +664,7 @@ public class multiplayerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_label11MouseClicked
 
     private void label12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label12MouseClicked
-     if(label12.getText() != "X" && label12.getText() != "O"){     
+     if(label12.getText() != "X" && label12.getText() != "O" && !winner && !drawb){     
         if(player == 1){
           matrix[1][2] = 1; 
           player = 2;
@@ -555,7 +681,7 @@ public class multiplayerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_label12MouseClicked
 
     private void label20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label20MouseClicked
-      if(label20.getText() != "X" && label20.getText() != "O"){    
+      if(label20.getText() != "X" && label20.getText() != "O" && !winner && !drawb){    
         if(player == 1){
           matrix[2][0] = 1; 
           player = 2;
@@ -572,7 +698,7 @@ public class multiplayerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_label20MouseClicked
 
     private void label21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label21MouseClicked
-      if(label21.getText() != "X" && label21.getText() != "O"){ 
+      if(label21.getText() != "X" && label21.getText() != "O" && !winner && !drawb){ 
         if(player == 1){
           matrix[2][1] = 1; 
           player = 2;
@@ -589,7 +715,7 @@ public class multiplayerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_label21MouseClicked
 
     private void label22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label22MouseClicked
-      if(label22.getText() != "X" && label22.getText() != "O"){   
+      if(label22.getText() != "X" && label22.getText() != "O" && !winner && !drawb){   
         if(player == 1){
           matrix[2][2] = 1; 
           player = 2;
@@ -636,7 +762,9 @@ public class multiplayerFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 
-                new multiplayerFrame().setVisible(true);
+               multiplayerFrame f = new multiplayerFrame();
+               f.setVisible(true);
+               f.setLocationRelativeTo(null);
             }
         });
     }
@@ -671,4 +799,26 @@ public class multiplayerFrame extends javax.swing.JFrame {
     private javax.swing.JLabel playingtitle1;
     private javax.swing.JLabel restart;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+         label00.setText("");
+        label01.setText("");
+        label02.setText("");
+        label10.setText("");
+        label11.setText("");
+        label12.setText("");
+        label20.setText("");
+        label21.setText("");
+        label22.setText("");
+        player = 1;
+        playerTurn1.setText("Players 1(O) turn");
+        for(int i = 0 ; i < 3 ; i++){
+            for(int j = 0 ; j < 3 ; j++){
+                matrix[i][j] = 0;
+            }
+        }
+      p.hide();
+     
+    }
 }

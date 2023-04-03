@@ -15,6 +15,7 @@ import java.awt.GridBagLayout;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 import javax.swing.BoxLayout;
 import static javax.swing.GroupLayout.Alignment.CENTER;
 import javax.swing.JButton;
@@ -29,8 +30,9 @@ import javax.swing.PopupFactory;
  *
  * @author GoldenTech
  */
-public class multiplayerFrame extends javax.swing.JFrame implements ActionListener{
 
+public class easyMode extends javax.swing.JFrame implements ActionListener{
+    boolean computer = false;
     /**
      * Creates new form multiplayerFrame
      */
@@ -41,11 +43,11 @@ public class multiplayerFrame extends javax.swing.JFrame implements ActionListen
      
         // create a panel
        
-        JPanel p1 = new JPanel();
+       // JPanel p1 = new JPanel();
          JPanel p2 = new JPanel();
          JLabel thewinner = new JLabel("player 1(O) is the winner!");
     private AWTEvent MouseClicked;
-    public multiplayerFrame() {
+    public easyMode() {
         initComponents();
         // create a frame
        
@@ -456,25 +458,28 @@ public class multiplayerFrame extends javax.swing.JFrame implements ActionListen
   
     boolean winner = false;
     boolean drawb = false;
+    int[][] matrix = new int[3][3];
+    int player = 1;
     public void checkWinner(int[][] matrix){
         ///////////////
          GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
          GraphicsDevice defaultScreen = ge.getDefaultScreenDevice();
     Rectangle rect = defaultScreen.getDefaultConfiguration().getBounds();
-    int X = ((int) rect.getMaxX() - p1.getWidth()) / 2;
-    int y = (int)((int) rect.getMaxX() - (p1.getHeight() * 1.9)) / 2;
+    int X = ((int) rect.getMaxX() - p2.getWidth()) / 2;
+    int y = (int)((int) rect.getMaxY() - (p2.getHeight())) / 2;
         p2.setSize(400, 100);
-        p1.setSize(400, 100);
+      //  p1.setSize(400, 100);
         Font fo = new Font("Chiller", 10, 59);
         thewinner.setFont(fo);
         p2.setBackground(Color.white);
-        p1.setLayout(new GridBagLayout());
+        //p1.setLayout(new GridBagLayout());
+        
         p2.add(thewinner);
         
         
         p = pf.getPopup(this, p2, 0, 0);
      
-        this.add(p1);
+       // this.add(p1);
        // f.show();
         //////////////////////
        
@@ -577,7 +582,7 @@ public class multiplayerFrame extends javax.swing.JFrame implements ActionListen
              }
          }
          if(draw == 9 && !winner){
-             X =(int) ((int) rect.getMaxX() - (p1.getWidth() / 1.4)) / 2;
+             X =(int) ((int) rect.getMaxX() - (p2.getWidth() / 1.4)) / 2;
              thewinner.setText("ITS A DRAW!...");
              p = pf.getPopup(this, p2, X, y);
              drawb = true;
@@ -585,11 +590,58 @@ public class multiplayerFrame extends javax.swing.JFrame implements ActionListen
             
          }
     }
-    int[][] matrix = new int[3][3];
-    int player = 1;
+    int row = 0;
+    int col = 0;
+     public void AIplay(int[][] matrix){
+          Random rand = new Random();
+          int r = rand.nextInt(2);
+          System.out.println(r + "r");
+         for(int i = 0 ; i < 3 ; i++){
+          if(computer){
+             for(int j = 0 ; j < 3 ; j++){
+               if(r == 0){
+                      System.out.println(r + "r");
+                  if(computer && matrix[i][j] == 0){
+                    computer = false;
+                    row = i;
+                    col = j;
+                }
+               }else{
+                  
+                      System.out.println(r + "r1");
+                       if(computer && matrix[j][i] == 0){
+                    computer = false;
+                    row = j;
+                    col = i;
+                       }
+               }
+//                  case 2:
+//                      System.out.println(r + "r");
+//                       if(computer && matrix[2 - i][j] == 0){
+//                    computer = false;
+//                    row = i;
+//                    col = j;
+//                }
+//                  case 3:
+//                      System.out.println(r + "r");
+//                       if(computer && matrix[2 - j][i] == 0){
+//                    computer = false;
+//                    row = i;
+//                    col = j;
+//                }
+             
+             }
+          }
+         }
+
+         
+     }
+    
+    
+    
     private void backFromMultiLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backFromMultiLabel1MouseClicked
         main f = new main();
-      //  System.out.println("hi");
+       //System.out.println(matrix[0][0]);
         this.setVisible(false);
         f.setVisible(true);
         f.setLocationRelativeTo(null);
@@ -607,7 +659,7 @@ public class multiplayerFrame extends javax.swing.JFrame implements ActionListen
         label21.setText("");
         label22.setText("");
         player = 1;
-        playerTurn1.setText("Players 1(O) turn");
+        playerTurn1.setText("Player's 1(O) turn");
         for(int i = 0 ; i < 3 ; i++){
             for(int j = 0 ; j < 3 ; j++){
                 matrix[i][j] = 0;
@@ -615,24 +667,56 @@ public class multiplayerFrame extends javax.swing.JFrame implements ActionListen
         }
         winner = false;
         drawb = false;
+        computer = false;
       p.hide();
            
     }//GEN-LAST:event_restartMouseClicked
 
     private void label00MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label00MouseClicked
-       if(label00.getText() != "X" && label00.getText() != "O" && !winner && !drawb){
-        if(player == 1){
+       if(label00.getText() != "X" && label00.getText() != "O" && !winner && !drawb && !computer){
+        
           matrix[0][0] = 1; 
           player = 2;
-          playerTurn1.setText("Players 2(X) turn");
+          playerTurn1.setText("Players 2(X) turn(computer turn)");
           label00.setText("O");
-        }else{
-           matrix[0][0] = 2;
-           player = 1;
-           playerTurn1.setText("Players 1(O) turn");
-           label00.setText("X");
-        }
-      // label00.setEnabled(false);
+          computer = true;
+          AIplay(matrix);
+          ///////////////////////////////////////////////////////////
+          if(row == 0 && col == 0){
+             label00.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+             matrix[row][col] = 2;
+         }else if(row == 0 && col == 1){
+             label01.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+              matrix[row][col] = 2;
+         }else if(row == 0 && col == 2){
+             label02.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+            //  matrix[row][col] = 2;
+         }else if(row == 1 && col == 0){
+             label10.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 1 && col == 1){
+             label11.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 1 && col == 2){
+             label12.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 0){
+             label20.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 1){
+             label21.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 2){
+             label22.setText("X");
+              matrix[row][col] = 2;
+         }
+          ////////////////////////////////////////////////////////////
       checkWinner(matrix);
        }
        
@@ -641,138 +725,399 @@ public class multiplayerFrame extends javax.swing.JFrame implements ActionListen
     }//GEN-LAST:event_label00MouseClicked
 
     private void label01MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label01MouseClicked
-      if(label01.getText() != "X" && label01.getText() != "O" && !winner && !drawb){
-        if(player == 1){
+      if(label01.getText() != "X" && label01.getText() != "O" && !winner && !drawb && !computer){
+        
           matrix[0][1] = 1; 
-          player = 2;
-          playerTurn1.setText("Players 2(X) turn");
+          playerTurn1.setText("Players 2(X) turn(computer turn)");
           label01.setText("O");
-       }else{
-           matrix[0][1] = 2;
-           player = 1;
-           playerTurn1.setText("Players 1(O) turn");
-           label01.setText("X");
-       }
+          computer = true;
+          AIplay(matrix);
+           ///////////////////////////////////////////////////////////
+          if(row == 0 && col == 0){
+             label00.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+             matrix[row][col] = 2;
+         }else if(row == 0 && col == 1){
+             label01.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+              matrix[row][col] = 2;
+         }else if(row == 0 && col == 2){
+             label02.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+            //  matrix[row][col] = 2;
+         }else if(row == 1 && col == 0){
+             label10.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 1 && col == 1){
+             label11.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 1 && col == 2){
+             label12.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 0){
+             label20.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 1){
+             label21.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 2){
+             label22.setText("X");
+              matrix[row][col] = 2;
+         }
+          ////////////////////////////////////////////////////////////
         checkWinner(matrix);
       }
     }//GEN-LAST:event_label01MouseClicked
 
     private void label02MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label02MouseClicked
-       if(label02.getText() != "X" && label02.getText() != "O" && !winner && !drawb){  
-        if(player == 1){
+       if(label02.getText() != "X" && label02.getText() != "O" && !winner && !drawb && !computer){  
+        
           matrix[0][2] = 1; 
           player = 2;
-          playerTurn1.setText("Players 2(X) turn");
+          playerTurn1.setText("Players 2(X) turn(computer turn)");
           label02.setText("O");
-       }else{
-           matrix[0][2] = 2;
-           player = 1;
-           playerTurn1.setText("Players 1(O) turn");
-           label02.setText("X");
-       }
+          computer = true;
+          AIplay(matrix);
+           ///////////////////////////////////////////////////////////
+          if(row == 0 && col == 0){
+             label00.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+             matrix[row][col] = 2;
+         }else if(row == 0 && col == 1){
+             label01.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+              matrix[row][col] = 2;
+         }else if(row == 0 && col == 2){
+             label02.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+            //  matrix[row][col] = 2;
+         }else if(row == 1 && col == 0){
+             label10.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 1 && col == 1){
+             label11.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 1 && col == 2){
+             label12.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 0){
+             label20.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 1){
+             label21.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 2){
+             label22.setText("X");
+              matrix[row][col] = 2;
+         }
+          ////////////////////////////////////////////////////////////
         checkWinner(matrix);
        }
     }//GEN-LAST:event_label02MouseClicked
 
     private void label10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label10MouseClicked
-        if(label10.getText() != "X" && label10.getText() != "O" && !winner && !drawb){ 
-        if(player == 1){
+        if(label10.getText() != "X" && label10.getText() != "O" && !winner && !drawb && !computer){ 
+        
           matrix[1][0] = 1; 
           player = 2;
-          playerTurn1.setText("Players 2(X) turn");
+          playerTurn1.setText("Players 2(X) turn(computer turn)");
           label10.setText("O");
-       }else{
-           matrix[1][0] = 2;
-           player = 1;
-           playerTurn1.setText("Players 1(O) turn");
-           label10.setText("X");
-       }
+          computer = true;
+          AIplay(matrix);
+           ///////////////////////////////////////////////////////////
+          if(row == 0 && col == 0){
+             label00.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+             matrix[row][col] = 2;
+         }else if(row == 0 && col == 1){
+             label01.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+              matrix[row][col] = 2;
+         }else if(row == 0 && col == 2){
+             label02.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+            //  matrix[row][col] = 2;
+         }else if(row == 1 && col == 0){
+             label10.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 1 && col == 1){
+             label11.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 1 && col == 2){
+             label12.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 0){
+             label20.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 1){
+             label21.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 2){
+             label22.setText("X");
+              matrix[row][col] = 2;
+         }
+          ////////////////////////////////////////////////////////////
         checkWinner(matrix);
         }
     }//GEN-LAST:event_label10MouseClicked
 
     private void label11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label11MouseClicked
-       if(label11.getText() != "X" && label11.getText() != "O" && !winner && !drawb){  
-        if(player == 1){
+       if(label11.getText() != "X" && label11.getText() != "O" && !winner && !drawb && !computer){  
+       
           matrix[1][1] = 1; 
           player = 2;
-          playerTurn1.setText("Players 2(X) turn");
+          playerTurn1.setText("Players 2(X) turn(computer turn)");
           label11.setText("O");
-       }else{
-           matrix[1][1] = 2;
-           player = 1;
-           playerTurn1.setText("Players 1(O) turn");
-           label11.setText("X");
-       }
+          computer = true;
+          AIplay(matrix);
+           ///////////////////////////////////////////////////////////
+          if(row == 0 && col == 0){
+             label00.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+             matrix[row][col] = 2;
+         }else if(row == 0 && col == 1){
+             label01.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+              matrix[row][col] = 2;
+         }else if(row == 0 && col == 2){
+             label02.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+            //  matrix[row][col] = 2;
+         }else if(row == 1 && col == 0){
+             label10.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 1 && col == 1){
+             label11.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 1 && col == 2){
+             label12.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 0){
+             label20.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 1){
+             label21.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 2){
+             label22.setText("X");
+              matrix[row][col] = 2;
+         }
+          ////////////////////////////////////////////////////////////
+          
         checkWinner(matrix);
        }
     }//GEN-LAST:event_label11MouseClicked
 
     private void label12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label12MouseClicked
-     if(label12.getText() != "X" && label12.getText() != "O" && !winner && !drawb){     
-        if(player == 1){
+     if(label12.getText() != "X" && label12.getText() != "O" && !winner && !drawb && !computer){     
+        
           matrix[1][2] = 1; 
           player = 2;
-          playerTurn1.setText("Players 2(X) turn");
+          playerTurn1.setText("Players 2(X) turn(computer turn)");
           label12.setText("O");
-       }else{
-           matrix[1][2] = 2;
-           player = 1;
-           playerTurn1.setText("Players 1(O) turn");
-           label12.setText("X");
-       }
+          computer = true;
+          AIplay(matrix);
+           ///////////////////////////////////////////////////////////
+          if(row == 0 && col == 0){
+             label00.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+             matrix[row][col] = 2;
+         }else if(row == 0 && col == 1){
+             label01.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+              matrix[row][col] = 2;
+         }else if(row == 0 && col == 2){
+             label02.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+            //  matrix[row][col] = 2;
+         }else if(row == 1 && col == 0){
+             label10.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 1 && col == 1){
+             label11.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 1 && col == 2){
+             label12.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 0){
+             label20.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 1){
+             label21.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 2){
+             label22.setText("X");
+              matrix[row][col] = 2;
+         }
+          ////////////////////////////////////////////////////////////
+          
         checkWinner(matrix);
      }
     }//GEN-LAST:event_label12MouseClicked
 
     private void label20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label20MouseClicked
-      if(label20.getText() != "X" && label20.getText() != "O" && !winner && !drawb){    
-        if(player == 1){
+      if(label20.getText() != "X" && label20.getText() != "O" && !winner && !drawb && !computer){    
+       
           matrix[2][0] = 1; 
           player = 2;
-          playerTurn1.setText("Players 2(X) turn");
+          playerTurn1.setText("Players 2(X) turn(computer turn)");
           label20.setText("O");
-       }else{
-           matrix[2][0] = 2;
-           player = 1;
-           playerTurn1.setText("Players 1(O) turn");
-           label20.setText("X");
-       }
-        checkWinner(matrix);
+          computer = true;
+          
+          AIplay(matrix);
+           ///////////////////////////////////////////////////////////
+          if(row == 0 && col == 0){
+             label00.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+             matrix[row][col] = 2;
+         }else if(row == 0 && col == 1){
+             label01.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+              matrix[row][col] = 2;
+         }else if(row == 0 && col == 2){
+             label02.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+            //  matrix[row][col] = 2;
+         }else if(row == 1 && col == 0){
+             label10.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 1 && col == 1){
+             label11.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 1 && col == 2){
+             label12.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 0){
+             label20.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 1){
+             label21.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 2){
+             label22.setText("X");
+              matrix[row][col] = 2;
+         }
+          ////////////////////////////////////////////////////////////
+          
+          checkWinner(matrix);
       }
     }//GEN-LAST:event_label20MouseClicked
 
     private void label21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label21MouseClicked
-      if(label21.getText() != "X" && label21.getText() != "O" && !winner && !drawb){ 
-        if(player == 1){
+      if(label21.getText() != "X" && label21.getText() != "O" && !winner && !drawb && !computer){ 
+        
           matrix[2][1] = 1; 
           player = 2;
-          playerTurn1.setText("Players 2(X) turn");
+          playerTurn1.setText("Players 2(X) turn(computer turn)");
           label21.setText("O");
-       }else{
-           matrix[2][1] = 2;
-           player = 1;
-           playerTurn1.setText("Players 1(O) turn");
-           label21.setText("X");
-       }
-        checkWinner(matrix);
+          computer = true;
+          
+          AIplay(matrix); 
+           ///////////////////////////////////////////////////////////
+          if(row == 0 && col == 0){
+             label00.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+             matrix[row][col] = 2;
+         }else if(row == 0 && col == 1){
+             label01.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+              matrix[row][col] = 2;
+         }else if(row == 0 && col == 2){
+             label02.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+            //  matrix[row][col] = 2;
+         }else if(row == 1 && col == 0){
+             label10.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 1 && col == 1){
+             label11.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 1 && col == 2){
+             label12.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 0){
+             label20.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 1){
+             label21.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 2){
+             label22.setText("X");
+              matrix[row][col] = 2;
+         }
+          ////////////////////////////////////////////////////////////
+          checkWinner(matrix);
       }
     }//GEN-LAST:event_label21MouseClicked
 
     private void label22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label22MouseClicked
-      if(label22.getText() != "X" && label22.getText() != "O" && !winner && !drawb){   
-        if(player == 1){
+      if(label22.getText() != "X" && label22.getText() != "O" && !winner && !drawb && !computer){   
+        
           matrix[2][2] = 1; 
           player = 2;
-          playerTurn1.setText("Players 2(X) turn");
+          playerTurn1.setText("Players 2(X) turn(computer turn)");
           label22.setText("O");
-       }else{
-           matrix[2][2] = 2;
-           player = 1;
-           playerTurn1.setText("Players 1(O) turn");
-           label22.setText("X");
-       }
-        checkWinner(matrix);
+          computer = true;
+           
+          AIplay(matrix);
+           ///////////////////////////////////////////////////////////
+          if(row == 0 && col == 0){
+             label00.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+             matrix[row][col] = 2;
+         }else if(row == 0 && col == 1){
+             label01.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+              matrix[row][col] = 2;
+         }else if(row == 0 && col == 2){
+             label02.setText("X");
+             System.out.println(row);
+              System.out.println(col);
+            //  matrix[row][col] = 2;
+         }else if(row == 1 && col == 0){
+             label10.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 1 && col == 1){
+             label11.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 1 && col == 2){
+             label12.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 0){
+             label20.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 1){
+             label21.setText("X");
+              matrix[row][col] = 2;
+         }else if(row == 2 && col == 2){
+             label22.setText("X");
+              matrix[row][col] = 2;
+         }
+          ////////////////////////////////////////////////////////////
+          checkWinner(matrix);
       }
     }//GEN-LAST:event_label22MouseClicked
 
@@ -805,21 +1150,22 @@ public class multiplayerFrame extends javax.swing.JFrame implements ActionListen
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(multiplayerFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(easyMode.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(multiplayerFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(easyMode.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(multiplayerFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(easyMode.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(multiplayerFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(easyMode.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 
-               multiplayerFrame f = new multiplayerFrame();
+               easyMode f = new easyMode();
                f.setVisible(true);
                f.setLocationRelativeTo(null);
             }

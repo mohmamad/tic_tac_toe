@@ -4,6 +4,8 @@
  */
 package com.mycompany.tic_tac_toe;
 
+import java.awt.Color;
+
 /**
  *
  * @author GoldenTech
@@ -29,7 +31,7 @@ public class singleDB extends javax.swing.JFrame {
         main1 = new javax.swing.JPanel();
         header2 = new javax.swing.JPanel();
         title1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        backP = new javax.swing.JPanel();
         back = new javax.swing.JLabel();
         btns1 = new javax.swing.JPanel();
         easy1 = new javax.swing.JPanel();
@@ -44,10 +46,16 @@ public class singleDB extends javax.swing.JFrame {
         main1.setBackground(new java.awt.Color(51, 51, 0));
         main1.setLayout(new java.awt.BorderLayout());
 
+        header2.setBackground(new java.awt.Color(0, 0, 0));
+
         title1.setFont(new java.awt.Font("Showcard Gothic", 0, 36)); // NOI18N
+        title1.setForeground(new java.awt.Color(0, 0, 255));
         title1.setText("         TIC TAC TOE");
 
+        backP.setBackground(new java.awt.Color(0, 0, 0));
+
         back.setFont(new java.awt.Font("Harlow Solid Italic", 0, 48)); // NOI18N
+        back.setForeground(new java.awt.Color(0, 0, 255));
         back.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         back.setText("<");
         back.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -56,20 +64,26 @@ public class singleDB extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                backMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                backMouseExited(evt);
+            }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout backPLayout = new javax.swing.GroupLayout(backP);
+        backP.setLayout(backPLayout);
+        backPLayout.setHorizontalGroup(
+            backPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backPLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        backPLayout.setVerticalGroup(
+            backPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backPLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(27, Short.MAX_VALUE))
@@ -80,7 +94,7 @@ public class singleDB extends javax.swing.JFrame {
         header2Layout.setHorizontalGroup(
             header2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, header2Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(backP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(title1, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE))
         );
@@ -88,7 +102,7 @@ public class singleDB extends javax.swing.JFrame {
             header2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(title1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(header2Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(backP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -96,11 +110,25 @@ public class singleDB extends javax.swing.JFrame {
 
         btns1.setBackground(new java.awt.Color(0, 0, 255));
 
-        easy1.setBackground(new java.awt.Color(51, 255, 0));
+        easy1.setBackground(new java.awt.Color(0, 0, 0));
+        easy1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 0), 2));
 
         easyBtn1.setFont(new java.awt.Font("Ravie", 0, 14)); // NOI18N
+        easyBtn1.setForeground(new java.awt.Color(0, 0, 255));
         easyBtn1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         easyBtn1.setText("Easy");
+        easyBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        easyBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                easyBtn1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                easyBtn1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                easyBtn1MouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout easy1Layout = new javax.swing.GroupLayout(easy1);
         easy1.setLayout(easy1Layout);
@@ -113,11 +141,22 @@ public class singleDB extends javax.swing.JFrame {
             .addComponent(easyBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
-        medium1.setBackground(new java.awt.Color(255, 153, 0));
+        medium1.setBackground(new java.awt.Color(0, 0, 0));
+        medium1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0), 2));
 
         mediumBtn1.setFont(new java.awt.Font("Ravie", 0, 14)); // NOI18N
+        mediumBtn1.setForeground(new java.awt.Color(0, 0, 255));
         mediumBtn1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         mediumBtn1.setText("Medium");
+        mediumBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        mediumBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                mediumBtn1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                mediumBtn1MouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout medium1Layout = new javax.swing.GroupLayout(medium1);
         medium1.setLayout(medium1Layout);
@@ -130,12 +169,23 @@ public class singleDB extends javax.swing.JFrame {
             .addComponent(mediumBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
-        hard1.setBackground(new java.awt.Color(255, 0, 0));
+        hard1.setBackground(new java.awt.Color(0, 0, 0));
+        hard1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0), 2));
 
         hardBtn1.setBackground(new java.awt.Color(255, 0, 0));
         hardBtn1.setFont(new java.awt.Font("Ravie", 0, 14)); // NOI18N
+        hardBtn1.setForeground(new java.awt.Color(0, 0, 255));
         hardBtn1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         hardBtn1.setText("Hard");
+        hardBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        hardBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                hardBtn1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                hardBtn1MouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout hard1Layout = new javax.swing.GroupLayout(hard1);
         hard1.setLayout(hard1Layout);
@@ -153,23 +203,23 @@ public class singleDB extends javax.swing.JFrame {
         btns1Layout.setHorizontalGroup(
             btns1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btns1Layout.createSequentialGroup()
-                .addContainerGap(178, Short.MAX_VALUE)
+                .addContainerGap(176, Short.MAX_VALUE)
                 .addGroup(btns1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(easy1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(medium1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(hard1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addContainerGap(177, Short.MAX_VALUE))
         );
         btns1Layout.setVerticalGroup(
             btns1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btns1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(42, 42, 42)
                 .addComponent(easy1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(medium1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(hard1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         main1.add(btns1, java.awt.BorderLayout.CENTER);
@@ -190,10 +240,49 @@ public class singleDB extends javax.swing.JFrame {
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         main f = new main();
-        System.out.println("hi");
         this.setVisible(false);
         f.setVisible(true);
+        f.setLocationRelativeTo(null);
     }//GEN-LAST:event_backMouseClicked
+
+    private void backMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseEntered
+        backP.setBackground(Color.gray);
+    }//GEN-LAST:event_backMouseEntered
+
+    private void backMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseExited
+       backP.setBackground(Color.black);
+    }//GEN-LAST:event_backMouseExited
+
+    private void easyBtn1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_easyBtn1MouseEntered
+        easy1.setBackground(Color.gray);
+    }//GEN-LAST:event_easyBtn1MouseEntered
+
+    private void easyBtn1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_easyBtn1MouseExited
+         easy1.setBackground(Color.black);
+    }//GEN-LAST:event_easyBtn1MouseExited
+
+    private void mediumBtn1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mediumBtn1MouseEntered
+         medium1.setBackground(Color.gray);
+    }//GEN-LAST:event_mediumBtn1MouseEntered
+
+    private void mediumBtn1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mediumBtn1MouseExited
+         medium1.setBackground(Color.black);
+    }//GEN-LAST:event_mediumBtn1MouseExited
+
+    private void hardBtn1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hardBtn1MouseEntered
+         hard1.setBackground(Color.gray);
+    }//GEN-LAST:event_hardBtn1MouseEntered
+
+    private void hardBtn1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hardBtn1MouseExited
+       hard1.setBackground(Color.black);
+    }//GEN-LAST:event_hardBtn1MouseExited
+
+    private void easyBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_easyBtn1MouseClicked
+        easyMode f = new easyMode();
+        this.setVisible(false);
+        f.setVisible(true);
+        f.setLocationRelativeTo(null);
+    }//GEN-LAST:event_easyBtn1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -225,20 +314,22 @@ public class singleDB extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new singleDB().setVisible(true);
+               singleDB s = new singleDB();
+               s.setVisible(true);
+               s.setLocationRelativeTo(null);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel back;
+    private javax.swing.JPanel backP;
     private javax.swing.JPanel btns1;
     private javax.swing.JPanel easy1;
     private javax.swing.JLabel easyBtn1;
     private javax.swing.JPanel hard1;
     private javax.swing.JLabel hardBtn1;
     private javax.swing.JPanel header2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel main1;
     private javax.swing.JPanel medium1;
     private javax.swing.JLabel mediumBtn1;

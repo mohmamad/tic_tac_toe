@@ -4,6 +4,9 @@
  */
 package com.mycompany.tic_tac_toe;
 
+import java.awt.Color;
+import static java.awt.Color.black;
+import static java.awt.Color.gray;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,9 +53,11 @@ public class main extends javax.swing.JFrame {
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Showcard Gothic", 0, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Tic Tac Toe");
         jLabel2.setToolTipText("");
@@ -77,9 +82,12 @@ public class main extends javax.swing.JFrame {
 
         body.setBackground(new java.awt.Color(0, 0, 204));
 
+        singlePM.setBackground(new java.awt.Color(0, 0, 0));
+        singlePM.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 70, 230), 2));
         singlePM.setPreferredSize(new java.awt.Dimension(200, 70));
 
         singleBtn.setFont(new java.awt.Font("Ravie", 0, 18)); // NOI18N
+        singleBtn.setForeground(new java.awt.Color(0, 0, 255));
         singleBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         singleBtn.setText("single Player");
         singleBtn.setToolTipText("");
@@ -89,28 +97,44 @@ public class main extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 singleBtnMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                singleBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                singleBtnMouseExited(evt);
+            }
         });
 
         javax.swing.GroupLayout singlePMLayout = new javax.swing.GroupLayout(singlePM);
         singlePM.setLayout(singlePMLayout);
         singlePMLayout.setHorizontalGroup(
             singlePMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(singleBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+            .addComponent(singleBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
         );
         singlePMLayout.setVerticalGroup(
             singlePMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(singleBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+            .addComponent(singleBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
         );
 
         singleBtn.getAccessibleContext().setAccessibleName("Single Player");
 
+        multiPM.setBackground(new java.awt.Color(0, 0, 0));
+        multiPM.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 70, 230), 2));
+
         multiBtn.setFont(new java.awt.Font("Ravie", 0, 18)); // NOI18N
+        multiBtn.setForeground(new java.awt.Color(0, 0, 255));
         multiBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         multiBtn.setText("multiPlayer");
         multiBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         multiBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 multiBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                multiBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                multiBtnMouseExited(evt);
             }
         });
 
@@ -145,7 +169,7 @@ public class main extends javax.swing.JFrame {
                 .addComponent(singlePM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
                 .addComponent(multiPM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         mainPanel.add(body, java.awt.BorderLayout.CENTER);
@@ -157,20 +181,35 @@ public class main extends javax.swing.JFrame {
 
     private void multiBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_multiBtnMouseClicked
         multiplayerFrame f = new multiplayerFrame();
-        System.out.println("hi");
         this.setVisible(false);
         f.setVisible(true);
-        
+        f.setLocationRelativeTo(null);
        
     }//GEN-LAST:event_multiBtnMouseClicked
 
     private void singleBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_singleBtnMouseClicked
         // TODO add your handling code here:
          singleDB f = new singleDB();
-        System.out.println("hi");
         this.setVisible(false);
         f.setVisible(true);
+        f.setLocationRelativeTo(null);
     }//GEN-LAST:event_singleBtnMouseClicked
+
+    private void singleBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_singleBtnMouseEntered
+        singlePM.setBackground(gray);
+    }//GEN-LAST:event_singleBtnMouseEntered
+
+    private void singleBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_singleBtnMouseExited
+        singlePM.setBackground(black);
+    }//GEN-LAST:event_singleBtnMouseExited
+
+    private void multiBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_multiBtnMouseEntered
+        multiPM.setBackground(gray);
+    }//GEN-LAST:event_multiBtnMouseEntered
+
+    private void multiBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_multiBtnMouseExited
+        multiPM.setBackground(black);
+    }//GEN-LAST:event_multiBtnMouseExited
 
     /**
      * @param args the command line arguments
@@ -202,29 +241,22 @@ public class main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new main().setVisible(true);
+               main m = new main();
+               m.setVisible(true);
+               m.setLocationRelativeTo(null);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel PalyingMain;
-    private javax.swing.JPanel PalyingMain1;
-    private javax.swing.JPanel PalyingMain2;
     private javax.swing.JPanel body;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel label00;
-    private javax.swing.JLabel label1;
-    private javax.swing.JLabel label2;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel multiBtn;
     private javax.swing.JPanel multiPM;
-    private javax.swing.JPanel panel00;
-    private javax.swing.JPanel panel1;
-    private javax.swing.JPanel panel2;
     private javax.swing.JLabel singleBtn;
     private javax.swing.JPanel singlePM;
     // End of variables declaration//GEN-END:variables

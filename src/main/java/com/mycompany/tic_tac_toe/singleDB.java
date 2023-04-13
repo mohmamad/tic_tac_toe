@@ -150,6 +150,9 @@ public class singleDB extends javax.swing.JFrame {
         mediumBtn1.setText("Medium");
         mediumBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         mediumBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mediumBtn1MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 mediumBtn1MouseEntered(evt);
             }
@@ -179,6 +182,9 @@ public class singleDB extends javax.swing.JFrame {
         hardBtn1.setText("Hard");
         hardBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hardBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hardBtn1MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 hardBtn1MouseEntered(evt);
             }
@@ -278,11 +284,25 @@ public class singleDB extends javax.swing.JFrame {
     }//GEN-LAST:event_hardBtn1MouseExited
 
     private void easyBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_easyBtn1MouseClicked
-        easyMode f = new easyMode();
+        easy f = new easy();
         this.setVisible(false);
         f.setVisible(true);
         f.setLocationRelativeTo(null);
     }//GEN-LAST:event_easyBtn1MouseClicked
+
+    private void mediumBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mediumBtn1MouseClicked
+        mediumMode f = new mediumMode();
+        this.setVisible(false);
+        f.setVisible(true);
+        f.setLocationRelativeTo(null);
+    }//GEN-LAST:event_mediumBtn1MouseClicked
+
+    private void hardBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hardBtn1MouseClicked
+        hardMode f = new hardMode();
+        this.setVisible(false);
+        f.setVisible(true);
+        f.setLocationRelativeTo(null);
+    }//GEN-LAST:event_hardBtn1MouseClicked
 
     /**
      * @param args the command line arguments

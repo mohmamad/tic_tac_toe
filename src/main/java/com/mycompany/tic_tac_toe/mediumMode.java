@@ -462,14 +462,13 @@ public class mediumMode extends javax.swing.JFrame implements ActionListener{
     int player = 1;
     public boolean checkWinner(int[][] matrix){
         if(!winner && !drawb){
-        ///////////////
+    ///////////////show winner////////////
          GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
          GraphicsDevice defaultScreen = ge.getDefaultScreenDevice();
     Rectangle rect = defaultScreen.getDefaultConfiguration().getBounds();
     int X = (int)((int) rect.getMaxX() - p2.getWidth() * 1.2 ) / 2;
     int y = (int)((int) rect.getMaxY() - (p2.getHeight())) / 2;
         p2.setSize(400, 100);
-      //  p1.setSize(400, 100);
         Font fo = new Font("Chiller", 10, 59);
         thewinner.setFont(fo);
         p2.setBackground(Color.white);
@@ -480,8 +479,7 @@ public class mediumMode extends javax.swing.JFrame implements ActionListener{
         
         p = pf.getPopup(this, p2, 0, 0);
      
-       // this.add(p1);
-       // f.show();
+ 
         //////////////////////
        
         int x = 0;
@@ -691,7 +689,8 @@ public class mediumMode extends javax.swing.JFrame implements ActionListener{
     
     /////////////////////////////////////////////////////////////
     
-    boolean togle = true;
+    //boolean togle = true;
+    int check = 0;
     public int[] alphaBeta(int[][] matrix) {
         int[] bestMove = new int[2];
        //inializing the alpha beta and the score values;////////////////////////
@@ -704,7 +703,7 @@ public class mediumMode extends javax.swing.JFrame implements ActionListener{
                 if (matrix[i][j] == 0) {
                     matrix[i][j] = 1;
                     int score = minValue(matrix, alpha, beta);
-                     System.out.println(score + "min score 1");
+                   //  System.out.println(score + "min score 1");
                     matrix[i][j] = 0;
 
                     if (score > bestScore) {
@@ -712,15 +711,11 @@ public class mediumMode extends javax.swing.JFrame implements ActionListener{
                         bestMove[0] = i;
                         bestMove[1] = j;
                     }
-                  //  if(togle){
-                        alpha = Math.max(alpha, bestScore);
-                        togle = !togle;
-                  //  }else{
-                        alpha = Math.min(alpha, bestScore);
-                         togle = !togle;
-                   // }
+
+                     alpha = Math.max(alpha, bestScore);
                     
-                    System.out.println(alpha + "alpha max");
+                    
+                   // System.out.println(alpha + "alpha max");
                ////////////pruning///////////////////////
                     if (alpha >= beta) {
                         break;
@@ -744,17 +739,18 @@ public class mediumMode extends javax.swing.JFrame implements ActionListener{
                 if (matrix[i][j] == 0) {
                     matrix[i][j] = 1;
                     int score = minValue(matrix, alpha, beta);
-                     System.out.println(score + "min score2");
+                    // System.out.println(score + "min score2");
                     matrix[i][j] = 0;
-                 //   if(togle){
+                  //  if(togle){
                     maxScore = Math.max(maxScore, score);
                  //   togle = !togle;
                   //  }else{
-                         maxScore = Math.min(maxScore, score);
+                     //    maxScore = Math.min(maxScore, score);
                     //     togle = !togle;
                   //  }
-                    
+                   
                     alpha = Math.max(alpha, maxScore);
+                   
                     if (alpha >= beta) {
                         return maxScore;
                     }
@@ -777,12 +773,12 @@ public class mediumMode extends javax.swing.JFrame implements ActionListener{
                 if (matrix[i][j] == 0) {
                     matrix[i][j] = 2;
                     int score = maxValue(matrix, alpha, beta);
-                     System.out.println(score + "max score2");
+                    // System.out.println(score + "max score2");
                     matrix[i][j] = 0;
 
                     minScore = Math.min(minScore, score);
                     beta = Math.min(beta, minScore);
-                     System.out.println(beta + "min beta");
+                    // System.out.println(beta + "min beta");
                     if (alpha >= beta) {
                         return minScore;
                     }
@@ -793,48 +789,142 @@ public class mediumMode extends javax.swing.JFrame implements ActionListener{
         return minScore;
     }
 /////////see whihch is better for the score///////////////////////////////////////////////////////////////
+    int togle = 0;
     private int evaluate(int[][] matrix) {
-       
-    // Evaluate rows
-    for (int row = 0; row < 3; row++) {
-        if (matrix[row][0] == matrix[row][1] && matrix[row][1] == matrix[row][2]) {
-            if (matrix[row][0] == 1) {
-                return 3;
-            } else if (matrix[row][0] == 2) {
-                return -2;
+        int x = 0;
+        int o = 0;
+        for(int i = 0 ; i < 3 ; i++){
+            x = 0;
+            o = 0;
+             
+            for(int j = 0 ; j < 3 ; j++){
+                if(matrix[i][j] == 1){
+                    o++;
+                }
+                if(matrix[i][j] == 2){
+                    x++;
+                }
+            }
+            if(x == 3){
+                togle++;
+                 if(togle < 3){
+                     System.out.println("-10");
+                     return -10;
+                 }else if(togle >= 3){
+                     togle = 0;
+                     return 10;
+                 }
+                 
+                 //-10
+                //x winner
+            }else if(o == 3){
+                togle++;
+                 if(togle < 3){
+                     System.out.println("-10");
+                     return 10;
+                 }else if(togle >= 3){
+                     togle = 0;
+                     return -10;
+                 }
+                //return 10;
+                //o winner
             }
         }
-    }
-
-    // Evaluate columns
-    for (int col = 0; col < 3; col++) {
-        if (matrix[0][col] == matrix[1][col] && matrix[1][col] == matrix[2][col]) {
-            if (matrix[0][col] == 1) {
-                return 3;
-            } else if (matrix[0][col] == 2) {
-                return -2;
+        ///////////
+         for(int i = 0 ; i < 3 ; i++){
+             x = 0;
+             o = 0;
+            for(int j = 0 ; j < 3 ; j++){
+                if(matrix[j][i] == 1){
+                    o++;
+                }
+                if(matrix[j][i] == 2){
+                    x++;
+                }
+            }
+            if(x == 3){
+                //x winner
+                togle++;
+                 if(togle < 3){
+                     System.out.println("-10");
+                     return -10;
+                     
+                 }else if(togle >= 3){
+                     togle = 0;
+                     return 10;
+                 }
+               // return -10;
+            }else if(o == 3){
+                togle++;
+                 if(togle < 3){
+                     return 10;
+                 }else if(togle >= 3){
+                     togle = 0;
+                     return -10;
+                 }
+                // return 10;
+                //o winner
             }
         }
-    }
-
-    // Evaluate diagonals
-    if (matrix[0][0] == matrix[1][1] && matrix[1][1] == matrix[2][2]) {
-        if (matrix[0][0] == 1) {
-            return 3;
-        } else if (matrix[0][0] == 2) {
-            return -2;
-        }
-    }
-
-    if (matrix[0][2] == matrix[1][1] && matrix[1][1] == matrix[2][0]) {
-        if (matrix[0][2] == 1) {
-            return 3;
-        } else if (matrix[0][2] == 2) {
-            return -2;
-        }
-    }
-
-    return 1; // No winner, return neutral score
+         if(matrix[0][0] == 1 && matrix[1][1] == 1 && matrix[2][2] == 1){
+             togle++;
+                 if(togle < 3){
+                     return 10;
+                 }else if(togle >= 3){
+                     togle = 0;
+                     return -10;
+                 }
+            
+             //return 10;
+             //o winner
+         }else if(matrix[0][0] == 2 && matrix[1][1] == 2 && matrix[2][2] == 2){
+            togle++;
+                 if(togle < 3){
+                     return -10;
+                 }else if(togle >= 3){
+                     togle = 0;
+                     return 10;
+                 }
+           // return -10;
+             //x winner
+         }
+         if(matrix[0][2] == 1 && matrix[1][1] == 1 && matrix[2][0] == 1){
+             togle++;
+                 if(togle < 3){
+                     return 10;
+                 }else if(togle >= 3){
+                     togle = 0;
+                     return -10;
+                 }
+          // return 10;
+             //o winner
+         }else if(matrix[0][2] == 2 && matrix[1][1] == 2 && matrix[2][0] == 2){
+             togle++;
+                 if(togle < 3){
+                     return -10;
+                 }else if(togle >= 3){
+                     togle = 0;
+                     return 10;
+                 }
+          //return -10;
+         }
+         int draw = 0;
+         for(int i = 0 ; i < 3 ; i++){
+             for(int j = 0 ; j < 3 ; j++){
+                 if(matrix[i][j] == 0){
+                     break;
+                 }else{
+                     draw++;
+                 }
+             }
+         }
+         if(draw == 9 && !winner){
+            
+            
+            return 0;
+         }
+         return 0;
+        
 }
 
    

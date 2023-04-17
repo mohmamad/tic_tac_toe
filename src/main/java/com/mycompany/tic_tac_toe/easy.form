@@ -119,7 +119,7 @@
                   <Color blue="0" green="cc" red="33" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Easy diffiulty"/>
+                <Property name="text" type="java.lang.String" value="Easy difficulty"/>
               </Properties>
             </Component>
             <Container class="javax.swing.JPanel" name="backFromMulti1">

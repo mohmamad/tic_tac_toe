@@ -114,7 +114,7 @@ public class hardMode extends javax.swing.JFrame implements ActionListener{
         playerTurn1.setFont(new java.awt.Font("Chiller", 0, 36)); // NOI18N
         playerTurn1.setForeground(new java.awt.Color(204, 0, 0));
         playerTurn1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        playerTurn1.setText("Hard diffiulty");
+        playerTurn1.setText("Hard difficulty");
 
         backFromMulti1.setBackground(new java.awt.Color(0, 0, 0));
         backFromMulti1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -785,46 +785,88 @@ public class hardMode extends javax.swing.JFrame implements ActionListener{
 /////////see whihch is better for the score///////////////////////////////////////////////////////////////
     private int evaluate(int[][] matrix) {
        
-    // Evaluate rows
-    for (int row = 0; row < 3; row++) {
-        if (matrix[row][0] == matrix[row][1] && matrix[row][1] == matrix[row][2]) {
-            if (matrix[row][0] == 1) {
+    int x = 0;
+        int o = 0;
+        for(int i = 0 ; i < 3 ; i++){
+            x = 0;
+            o = 0;
+             
+            for(int j = 0 ; j < 3 ; j++){
+                if(matrix[i][j] == 1){
+                    o++;
+                }
+                if(matrix[i][j] == 2){
+                    x++;
+                }
+            }
+            if(x == 3){
+                
+                 
+                 return -10;
+                //x winner
+            }else if(o == 3){
+                 
                 return 10;
-            } else if (matrix[row][0] == 2) {
-                return -10;
+                //o winner
             }
         }
-    }
-
-    // Evaluate columns
-    for (int col = 0; col < 3; col++) {
-        if (matrix[0][col] == matrix[1][col] && matrix[1][col] == matrix[2][col]) {
-            if (matrix[0][col] == 1) {
-                return 10;
-            } else if (matrix[0][col] == 2) {
+        ///////////
+         for(int i = 0 ; i < 3 ; i++){
+             x = 0;
+             o = 0;
+            for(int j = 0 ; j < 3 ; j++){
+                if(matrix[j][i] == 1){
+                    o++;
+                }
+                if(matrix[j][i] == 2){
+                    x++;
+                }
+            }
+            if(x == 3){
+                //x winner
+                 
+              
                 return -10;
+            }else if(o == 3){
+                
+                 return 10;
+                //o winner
             }
         }
-    }
-
-    // Evaluate diagonals
-    if (matrix[0][0] == matrix[1][1] && matrix[1][1] == matrix[2][2]) {
-        if (matrix[0][0] == 1) {
-            return 10;
-        } else if (matrix[0][0] == 2) {
+         if(matrix[0][0] == 1 && matrix[1][1] == 1 && matrix[2][2] == 1){
+             
+            
+             return 10;
+             //o winner
+         }else if(matrix[0][0] == 2 && matrix[1][1] == 2 && matrix[2][2] == 2){
+            
             return -10;
-        }
-    }
-
-    if (matrix[0][2] == matrix[1][1] && matrix[1][1] == matrix[2][0]) {
-        if (matrix[0][2] == 1) {
-            return 10;
-        } else if (matrix[0][2] == 2) {
-            return -10;
-        }
-    }
-
-    return 0; // No winner, return neutral score
+             //x winner
+         }
+         if(matrix[0][2] == 1 && matrix[1][1] == 1 && matrix[2][0] == 1){
+              
+           return 10;
+             //o winner
+         }else if(matrix[0][2] == 2 && matrix[1][1] == 2 && matrix[2][0] == 2){
+              
+          return -10;
+         }
+         int draw = 0;
+         for(int i = 0 ; i < 3 ; i++){
+             for(int j = 0 ; j < 3 ; j++){
+                 if(matrix[i][j] == 0){
+                     break;
+                 }else{
+                     draw++;
+                 }
+             }
+         }
+         if(draw == 9 && !winner){
+            
+            
+            return 0;
+         }
+         return 0;
 }
 
    

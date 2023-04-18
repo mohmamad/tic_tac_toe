@@ -714,14 +714,14 @@ public class easy extends javax.swing.JFrame implements ActionListener{
                         bestMove[1] = j;
                     }
                    // if(togle){
-                    //    alpha = Math.max(alpha, bestScore);
+                        alpha = Math.max(alpha, bestScore);
                    //     togle = !togle;
                   //  }else{
                   //      alpha = Math.min(alpha, bestScore);
                          togle = !togle;
                   //  }
                     
-                    System.out.println(alpha + "alpha max");
+                    
                ////////////pruning///////////////////////
                     if (alpha >= beta) {
                         break;
@@ -778,19 +778,14 @@ public class easy extends javax.swing.JFrame implements ActionListener{
                 if (matrix[i][j] == 0) {
                     matrix[i][j] = 2;
                     int score = maxValue(matrix, alpha, beta);
-                     System.out.println(score + "max score2");
+                     //System.out.println(score + "max score2");
                     matrix[i][j] = 0;
 
                     minScore = Math.min(minScore, score);
-                    if(togle){
-                        beta = Math.min(beta, minScore);
-                        togle = !togle;
-                    }else{
+
                         beta = Math.max(beta, minScore);
-                        togle = !togle;
-                    }
                     
-                     System.out.println(beta + "min beta");
+                    // System.out.println(beta + "min beta");
                     if (alpha >= beta) {
                         return minScore;
                     }

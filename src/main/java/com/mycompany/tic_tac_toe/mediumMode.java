@@ -114,7 +114,7 @@ public class mediumMode extends javax.swing.JFrame implements ActionListener{
         playerTurn1.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         playerTurn1.setForeground(new java.awt.Color(255, 102, 0));
         playerTurn1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        playerTurn1.setText("medium diffiulty");
+        playerTurn1.setText("medium difficulty");
 
         backFromMulti1.setBackground(new java.awt.Color(0, 0, 0));
         backFromMulti1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -703,7 +703,6 @@ public class mediumMode extends javax.swing.JFrame implements ActionListener{
                 if (matrix[i][j] == 0) {
                     matrix[i][j] = 1;
                     int score = minValue(matrix, alpha, beta);
-                   //  System.out.println(score + "min score 1");
                     matrix[i][j] = 0;
 
                     if (score > bestScore) {
@@ -739,15 +738,11 @@ public class mediumMode extends javax.swing.JFrame implements ActionListener{
                 if (matrix[i][j] == 0) {
                     matrix[i][j] = 1;
                     int score = minValue(matrix, alpha, beta);
-                    // System.out.println(score + "min score2");
+                   
                     matrix[i][j] = 0;
-                  //  if(togle){
+                 
                     maxScore = Math.max(maxScore, score);
-                 //   togle = !togle;
-                  //  }else{
-                     //    maxScore = Math.min(maxScore, score);
-                    //     togle = !togle;
-                  //  }
+                 
                    
                     alpha = Math.max(alpha, maxScore);
                    
@@ -808,7 +803,6 @@ public class mediumMode extends javax.swing.JFrame implements ActionListener{
             if(x == 3){
                 togle++;
                  if(togle < 3){
-                     System.out.println("-10");
                      return -10;
                  }else if(togle >= 3){
                      togle = 0;
@@ -820,7 +814,6 @@ public class mediumMode extends javax.swing.JFrame implements ActionListener{
             }else if(o == 3){
                 togle++;
                  if(togle < 3){
-                     System.out.println("-10");
                      return 10;
                  }else if(togle >= 3){
                      togle = 0;
@@ -846,7 +839,6 @@ public class mediumMode extends javax.swing.JFrame implements ActionListener{
                 //x winner
                 togle++;
                  if(togle < 3){
-                     System.out.println("-10");
                      return -10;
                      
                  }else if(togle >= 3){
@@ -936,7 +928,7 @@ int[][] matrix1 = new int[3][3];
     ////////////////////////////////////////////////////////////////
      public void AIplay(int[][] matrix){
          if(!winner){
-         System.out.println("-------------------------");
+        // applaying best move
          int[] bestmove = new int[2];
          matrix1 = matrix.clone();
          
@@ -972,7 +964,6 @@ int[][] matrix1 = new int[3][3];
     
     private void backFromMultiLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backFromMultiLabel1MouseClicked
        singleDB f = new singleDB();
-       //System.out.println(matrix[0][0]);
         this.setVisible(false);
         f.setVisible(true);
         f.setLocationRelativeTo(null);
@@ -990,7 +981,6 @@ int[][] matrix1 = new int[3][3];
         label21.setText("");
         label22.setText("");
         player = 1;
-//        playerTurn1.setText("Player's 1(O) turn");
         for(int i = 0 ; i < 3 ; i++){
             for(int j = 0 ; j < 3 ; j++){
                 matrix[i][j] = 0;

@@ -691,22 +691,18 @@ public class hardMode extends javax.swing.JFrame implements ActionListener{
     
     /////////////////////////////////////////////////////////////
     
-    private final char HUMAN_PLAYER = 'X';
-    private final char AI_PLAYER = 'O';
+   
 
     public int[] alphaBeta(int[][] matrix) {
         int[] bestMove = new int[2];
-       //inializing the alpha beta and the score values;////////////////////////
         int bestScore = Integer.MIN_VALUE;
         int alpha = Integer.MIN_VALUE;
         int beta = Integer.MAX_VALUE;
-//////////max move setting alpha value///////////////////////////////////////////////////////////////////
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (matrix[i][j] == 0) {
                     matrix[i][j] = 1;
                     int score = minValue(matrix, alpha, beta);
-                     System.out.println(score + "min score 1");
                     matrix[i][j] = 0;
 
                     if (score > bestScore) {
@@ -716,8 +712,6 @@ public class hardMode extends javax.swing.JFrame implements ActionListener{
                     }
 
                     alpha = Math.max(alpha, bestScore);
-                    System.out.println(alpha + "alpha max");
-               ////////////pruning///////////////////////
                     if (alpha >= beta) {
                         break;
                     }

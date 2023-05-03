@@ -713,13 +713,9 @@ public class easy extends javax.swing.JFrame implements ActionListener{
                         bestMove[0] = i;
                         bestMove[1] = j;
                     }
-                   // if(togle){
+                   
                         alpha = Math.max(alpha, bestScore);
-                   //     togle = !togle;
-                  //  }else{
-                  //      alpha = Math.min(alpha, bestScore);
-                         togle = !togle;
-                  //  }
+                   
                     
                     
                ////////////pruning///////////////////////
